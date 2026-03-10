@@ -18,7 +18,7 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(() => {
-    // Verifica se estamos no browser antes de acessar localStorage
+    // verifica se estamos no browser antes de acessar localStorage
     if (typeof window !== 'undefined') {
       return localStorage.getItem('token')
     }
@@ -26,8 +26,6 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   })
 
   useEffect(() => {
-    console.log("Token mudou:", token)
-    
     if (token) {
       try {
         const parts = token.split('.')
@@ -39,19 +37,14 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         const expirationTime = payload.exp * 1000
         const currentTime = Date.now()
 
-        console.log("Token payload:", payload)
-        console.log("Token expira em:", new Date(expirationTime))
-        console.log("Tempo atual:", new Date(currentTime))
-
         if (expirationTime > currentTime) {
           setUser({ 
             id: payload.id || payload.sub, 
             username: payload.username || payload.name || 'Usuário' 
           })
-          console.log("Usuário autenticado com sucesso")
+          
         } else {
-          console.log("Token expirado, removendo...")
-          // Token expirado → limpa
+          // token expirado → limpa
           if (typeof window !== 'undefined') {
             localStorage.removeItem("token")
           }
@@ -59,7 +52,6 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
           setUser(null)
         }
       } catch (err) {
-        console.error("Erro ao decodificar token:", err)
         if (typeof window !== 'undefined') {
           localStorage.removeItem("token")
         }
@@ -68,13 +60,10 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
       }
     } else {
       setUser(null)
-      console.log("Token removido, usuário deslogado")
     }
   }, [token])
 
   function Login(newToken: string) {
-    console.log("Executando Login com token:", newToken)
-    
     if (typeof window !== 'undefined') {
       localStorage.setItem('token', newToken)
     }
@@ -82,8 +71,6 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   }
 
   function Logout() {
-    console.log("Executando Logout")
-    
     if (typeof window !== 'undefined') {
       localStorage.removeItem('token')
     }
