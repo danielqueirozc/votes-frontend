@@ -9,11 +9,9 @@ import { PainelVotation } from "./components/admin/painel-votation";
 import { Vote } from "./components/vote/vote";
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const { token, isAuthenticated } = UseAuth()
+  const { isAuthenticated } = UseAuth()
 
-  console.log("PrivateRoute - Token:", !!token, "Authenticated:", isAuthenticated)
 
-  // Usa isAuthenticated para uma verificação mais robusta
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />
 }
 
@@ -29,10 +27,10 @@ export function App() {
     <div className="w-full m-auto">
       <BrowserRouter>
         <Routes>
-          {/* Rota principal redireciona para login */}
+          {/* rota principal redireciona para login */}
           <Route path="/" element={<Navigate to="/login" replace />} />
           
-          {/* Rotas públicas - redirecionam para admin se já logado */}
+          {/* rotas públicas -> redirecionam para admin se já logado */}
           <Route path="/login" element={
             <PublicRoute>
               <Login />
