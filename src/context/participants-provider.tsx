@@ -55,11 +55,13 @@ export function ParticipantsProvider({ children }: { children: React.ReactNode }
 
     async function DeleteParticipant(id: string ) {
       await ParticipantService.delete(id)
+
       setParticipants(state => state.filter(participant => participant.id !== id))
     }
 
     async function EditParticipant(id: string, data: EditParticipantType) {
       await api.put(`edit-participant/${id}`, data)
+      
       setParticipants(state => state.map(participant => participant.id === id ? { ...participant, ...data } : participant))
     }
 
