@@ -9,7 +9,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog"
 
-import { DialogNewParticipant } from "./dialog";
+import { DialogNewParticipant } from "./dialog-new-participant";
 import { useEffect, useState, type FormEvent } from "react"; // Importe FormEvent
 import { useParticipants } from "@/context/use-participants";
 import { useNavigate } from "react-router-dom";
@@ -38,8 +38,6 @@ export function Participants() {
     async function handleCreateVote(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setIsCreatingVote(true)
-
-        console.log('Criando votação...')
 
         if (selectedParticipants.length < 2 || selectedParticipants.length > 3) {
             alert('Você precisa selecionar entre 2 e 3 participantes para criar uma votação')
