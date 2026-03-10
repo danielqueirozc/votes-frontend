@@ -4,7 +4,7 @@ import { useState } from "react"
 import {  useNavigate } from "react-router-dom"
 
 export function Register() {
-const [_, setError] = useState('')
+const [error, setError] = useState('')
 const navigate = useNavigate()
 
 async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -22,10 +22,12 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
       email: email as string,
       password: password as string,
     })
+
+    
   } catch (err) {
     if (axios.isAxiosError(err)) {
       setError(err.response?.data?.error || 'Erro ao registrar usuário')
-  }
+    }
   }
 }
 
@@ -65,6 +67,8 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
           />
         </div>
        </div>
+
+       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
       <button
         type="submit"
