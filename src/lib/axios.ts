@@ -25,33 +25,31 @@ api.interceptors.response.use(
 )
 
 export const ParticipantService = {
-    create: async ({ name, imageUrl }: ParticipantType) => await api.post('/create-votes', { name, imageUrl }),
-    list: async () => await api.get('/list-votes'),
+    create: async ({ name, imageUrl }: ParticipantType) => await api.post('/create-participant', { name, imageUrl }),
+    list: async () => await api.get('/list-participants'),
     delete: async (id: string) => await api.delete(`/delete-participant/${id}`)
 }
 
 export const AuthService = {
     register: async ({ name, email, password }: RegisterType) => {
         const response = await api.post('/users', { name, email, password })
-
-        localStorage.setItem('token', response.data.token)
-
+        
         return response.data
-    },
-
-    login: async ({ email, password }: LoginType) => {
-      const response = await api.post('/sessions', { email, password })
-
+      },
+      
+      login: async ({ email, password }: LoginType) => {
+        const response = await api.post('/sessions', { email, password })
+        
+        localStorage.setItem('token', response.data.token)
+        
       return response.data
     }
 }
 
 export const VoteService = {
   create: async ({ title, participantIds }: VoteType) => {
-    console.log('chegou aqui')
 
     const response = await api.post('/create-vote', { title, participantIds })
-    console.log('chegou aqui')
 
     return response.data
   },
@@ -63,4 +61,17 @@ export const VoteService = {
   list: async () => await api.get('/list-votes'),
 
   listById: async (id: string) => await api.get(`/vote/${id}`)
+}
+
+export const UserVotesService = {
+  create(voteId: string, participantId: string) {
+
+   return api.post('/vote', { voteId, participantId })
+  },
+
+  getVoteCounts: async (participantId: string) => {
+    const response = await api.get(`/participants/${participantId}/votes/count`)
+
+    return response.data
+  }
 }
