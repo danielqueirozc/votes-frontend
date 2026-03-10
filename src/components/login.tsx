@@ -17,31 +17,27 @@ export function Login() {
     const email = formData.get('email')
     const password = formData.get('password')
 
-    // Validação básica
+    // validação
     if (!email || !password) {
       setError('Email e senha são obrigatórios')
       return
     }
 
     try {
-      setError('') // Limpa erros anteriores
+      setError('') // limpa erros anteriores
       
       const response = await AuthService.login({
         email: email as string,
         password: password as string
       })
 
-      console.log("Token recebido do backend:", response.token)
-
-      // Chama o Login do contexto
+      // chama o Login do contexto
       Login(response.token)
       
-      // Força o redirecionamento imediatamente após o login
+      // força o redirecionamento imediatamente após o login
       navigate('/admin', { replace: true })
       
     } catch (err) {
-      console.error("Erro no login:", err)
-      
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || 'Erro ao fazer login')
       } else {
@@ -50,11 +46,10 @@ export function Login() {
     }
   }
 
-  // Verifica se já está logado ao montar o componente
+  // verifica se já está logado ao montar o componente
   useEffect(() => {
     if (token) {
       navigate('/admin', { replace: true })
-      console.log("Usuário já autenticado, redirecionando...")
     }
   }, [token, navigate])
 
@@ -63,7 +58,7 @@ export function Login() {
       <form onSubmit={handleSubmit} className="w-[400px] h-[400px] bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-10 shadow-2xl shadow-black/10 text-center text-black">
         <h1>Login</h1>
 
-        {/* Exibe erros se houver */}
+        {/* exibe erros se houver */}
         {error && (
           <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-lg">
             {error}
