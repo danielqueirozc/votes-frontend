@@ -20,7 +20,7 @@ export function PainelVotation() {
   const [isVoteClosed, setIsVoteClosed] = useState(false) // estado de encerramento
   const [isClosing, setIsClosing] = useState(false)
   
-  const { ListById, voteData, lastCreatedVoteLink, CloseVote } = UseVote() // importa CloseVote
+  const { ListById, voteData, lastCreatedVoteLink, CloseVote } = UseVote()
   const { isConnected, lastMessage } = useWebSocket()
  
   useEffect(() => {
@@ -40,7 +40,7 @@ export function PainelVotation() {
     }
   }, [lastCreatedVoteLink])
 
-  // ✅ Inicializar participantes e verificar status
+  // inicializar participantes e verificar status
   useEffect(() => {
     if (voteData?.participants) {
       console.log("dados iniciais da votação:", voteData)
@@ -120,7 +120,7 @@ export function PainelVotation() {
     }
   }
 
-  // ✅ Função para encerrar votação (agora usando o contexto)
+  // função para encerrar votação (agora usando o contexto)
   async function handleCloseVote() {
     if (!id) return
     if (isVoteClosed) return
@@ -139,6 +139,8 @@ export function PainelVotation() {
       
       setIsVoteClosed(true)
       setShowToast(true)
+
+      // voteData?.winner = 
       
     } catch (error: any) {
       if (error.response?.status === 403) {
