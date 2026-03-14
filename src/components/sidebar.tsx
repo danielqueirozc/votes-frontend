@@ -22,13 +22,20 @@ export function Sidebar() {
     Logout()
   }
 
-  const isHomeActive = location.pathname.startsWith('/admin') || location.pathname === '/' // fica true se estiver na rota /admin ou /
+  const isHomeActive = location.pathname.startsWith('/admin') || location.pathname === '/' || location.pathname.startsWith('/participants') // fica true se estiver na rota /admin ou /
   const isVotationsActive = location.pathname.startsWith('/votations')
 
   return (
     <article className="w-[297px] h-screen flex flex-col justify-between bg-[#FAFAFA] px-5 py-7">
       <div className="flex flex-col gap-12">
-        <h1 className="text-[#222222]">TITULO</h1>
+        <div className="flex gap-2 items-center">
+          <h1 className="text-[#5D7285] font-extrabold text-2xl">VOTES</h1>
+          <img
+            className='h-6'
+            src="/logo.svg" 
+            alt="Logo" 
+          />
+        </div>
         <div className="flex flex-col gap-4">
           <button
             onClick={HandleClickAdmin}
@@ -46,25 +53,6 @@ export function Sidebar() {
             <p className={`text-[#5D7285] font-semibold ${isVotationsActive ? "text-[#7C5AED]" : ""}`}>Votações</p>
           </button>
 
-          {/* <button
-            onClick={() => setActiveTab("votacoes")}
-            className={`cursor-pointer px-5 py-3 flex gap-2 rounded-lg ${activeTab === "votacoes" ? "bg-[#7C5AED]/20" : ""}`}
-          >
-            <VoteIcon className={`text-[#5D7285] ${activeTab === "votacoes" ? "text-[#7C5AED]" : ""}`} />
-            <p className={`text-[#5D7285] font-semibold ${activeTab === "votacoes" ? "text-[#7C5AED]" : ""}`}>Votações</p>
-          </button> */}
-
-          {/* {newVotationClicked && (
-            <button
-              onClick={() => setActiveTab("participants")}
-              className={`px-5 py-3 flex gap-2 rounded-lg ${activeTab === "participants" ? "bg-[#7C5AED]/20" : ""}`}
-            >
-              <NotebookPen className={`text-[#5D7285] ${activeTab === "participants" ? "text-[#7C5AED]" : ""}`} />
-              <p className={`text-[#5D7285] font-semibold ${activeTab === "participants" ? "text-[#7C5AED]" : ""}`}>
-                Participantes
-              </p>
-            </button>
-          )} */}
         </div>
       </div>
 
