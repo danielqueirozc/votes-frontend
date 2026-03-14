@@ -22,7 +22,6 @@ export function DialogNewParticipant() {
         const { name, imageUrl } = data
 
         try {
-            console.log("📦 Dados enviados para CreateParticipant:", data)
             await CreateParticipant({ name, imageUrl })
         } catch( error ) {
             console.log('Error creating new transaction', error)
