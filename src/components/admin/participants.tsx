@@ -163,7 +163,7 @@ export function Participants() {
                     </section>
                 </div>
 
-                {/* Apenas mostra o botão para abrir o modal se houver participantes selecionados */}
+                {/* Apenas mostra o botão para abrir o modal de criaçãp de voto se houver participantes selecionados */}
                 {selectedParticipants.length >= 2 && (
                     <Dialog>
                         <DialogTrigger asChild>
@@ -175,7 +175,6 @@ export function Participants() {
                             </button>
                         </DialogTrigger>
                         <DialogContent className="p-0">
-                            {/* O formulário agora está AQUI, envolvendo o conteúdo do modal */}
                             <form onSubmit={handleCreateVote} className="flex flex-col justify-between w-lg px-8 py-6 h-68 gap-4">
                                 <DialogTitle>
                                     Escolha um título para a sua votação
@@ -190,7 +189,7 @@ export function Participants() {
                                     required
                                 />
                                 <div className="flex justify-end gap-2">
-                                    {/* Botão para fechar o modal sem submeter */}
+                                    {/* botão para fechar o modal sem submeter */}
                                     <DialogClose asChild>
                                         <button type="button" className="bg-gray-200 px-8 py-4 text-gray-800 font-medium rounded-lg">
                                             Cancelar
