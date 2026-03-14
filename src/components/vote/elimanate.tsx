@@ -19,7 +19,7 @@ interface VoteType {
   participants: ParticipantsType[]
 }
 
-// ✅ Função para gerar/recuperar ID anônimo
+// função para gerar/recuperar ID anônimo
 function getAnonymousId(voteId: string): string {
   const storageKey = `anonymous_vote_${voteId}`
   
@@ -41,7 +41,7 @@ export function Eliminate() {
   const [confirmedVote, setConfirmedVote] = useState<boolean>(false)
   const [voteData, setVoteData] = useState<VoteType | null>(null)
   const [isVoting, setIsVoting] = useState<boolean>(false)
-  const [isVoteClosed, setIsVoteClosed] = useState<boolean>(false) // ✅ Estado de encerramento
+  const [isVoteClosed, setIsVoteClosed] = useState<boolean>(false) // estado de encerramento
 
   const { id } = useParams()
   const { lastMessage } = useWebSocket()
@@ -59,7 +59,7 @@ export function Eliminate() {
         setIsVoteClosed(true)
       }
     }).catch((error) => {
-      console.error('❌ Erro ao carregar voto:', error)
+      console.error('erro ao carregar voto:', error)
     })
   }, [id])
 
@@ -70,7 +70,7 @@ export function Eliminate() {
     // atualização de votos
     if (lastMessage.event === 'vote_update') {
       const data = lastMessage.data
-      console.log('📩 Atualização recebida via WebSocket:', data)
+      console.log('atualização recebida via WebSocket:', data)
       
       if (data.voteId === id) {
         setVoteData(prevData => {
@@ -119,9 +119,9 @@ export function Eliminate() {
         anonymousId // sempre envia, backend decide se usa ou não
       })
       
-      // ✅ Marca como confirmado
+      // marca como confirmado
       setConfirmedVote(true)
-      console.log('✅ Voto confirmado com sucesso!')
+      console.log('voto confirmado com sucesso!')
       
     } catch (error: any) {
       // verifica o tipo de erro
@@ -144,7 +144,7 @@ export function Eliminate() {
 
   return (
     <section className="flex flex-col items-center gap-4 mt-6">
-      {/* ✅ Banner de votação encerrada */}
+      {/* banner de votação encerrada */}
       {isVoteClosed && (
         <div className="w-full bg-red-500 text-white py-4 px-6 text-center font-bold text-lg rounded-lg">
           🔒 VOTAÇÃO ENCERRADA - Não é mais possível votar
