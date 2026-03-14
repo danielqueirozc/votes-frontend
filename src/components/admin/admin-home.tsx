@@ -20,14 +20,14 @@ export function AdminHome() {
                         <img 
                             src="/eye.png"
                             className="w-[200px] h-[200px] mx-auto"
-                            alt="Olho ilustrativo" 
+                            alt="olho ilustrativo" 
                         />
 
                         <strong className="text-[#727579] text-[22px]">
                             Nenhuma votação cadastrada
                         </strong>
 
-                        <button onClick={handleClick } className="bg-[#D818A5] text-[#FAFAFA] w-full h-16 px-12 py-5 rounded-lg cursor-pointer">    
+                        <button onClick={handleClick } className="bg-[#D818A5] text-[#FAFAFA] font-medium w-full h-16 px-12 py-5 rounded-lg cursor-pointer">    
                             <Link to="/participants">Criar nova votação</Link> 
                         </button>
                     </div>
