@@ -17,6 +17,7 @@ interface VoteType {
   participantIds: string[]
   participants?: ParticipantsType[]
   status?: 'ACTIVE' | 'CLOSED'
+  winnerName?: string
 }
 
 interface Link {
@@ -29,7 +30,7 @@ interface VoteContextType {
   ListById: (id: string) => Promise<void>
   Create: ({ title, participantIds }: VoteType) => Promise<Link>
   Delete: () => Promise<void>
-  CloseVote: (voteId: string) => Promise<void> // ✅ Nova função
+  CloseVote: (voteId: string) => Promise<void> //
   votes: VoteType[]
   voteData: VoteType | null
   lastCreatedVoteLink: string | null
