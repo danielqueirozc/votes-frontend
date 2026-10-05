@@ -9,14 +9,17 @@ import { PainelVotation } from "./components/admin/painel-votation";
 import { Vote } from "./components/vote/vote";
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated } = UseAuth()
+  const { isAuthenticated, isLoading } = UseAuth()
 
+  if (isLoading) return null
 
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />
 }
 
 const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated } = UseAuth()
+  const { isAuthenticated, isLoading } = UseAuth()
+
+  if (isLoading) return null
 
   // Se já está autenticado, redireciona para admin
   return isAuthenticated ? <Navigate to="/admin" replace /> : <>{children}</>
