@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { Copy, Check, X } from "lucide-react"
 import { UseVote } from "@/context/vote-context"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useWebSocket } from "@/context/websocket-context"
 
 interface Participant {
@@ -189,19 +189,14 @@ export function PainelVotation() {
         </div>
       )}
 
-      {/* Quadro de status */}
-      <div className="fixed top-5 left-5 bg-black/80 text-white p-4 rounded-lg text-xs max-w-md">
-        <div>🔌 WebSocket: {isConnected ? '✅ Conectado' : '❌ Desconectado'}</div>
-        <div>🎯 Vote ID: {id}</div>
-        <div>👥 Participantes: {participants.length}</div>
-        <div>📊 Total Votos: {totalVotes}</div>
-        <div>🔒 Status: {isVoteClosed ? '❌ Encerrada' : '✅ Ativa'}</div>
-      </div>
+     <Link to='/admin' className="fixed top-5 left-5 bg-black/80 text-white p-4 rounded-lg text-xs max-w-md">
+        Voltar
+     </Link>
 
       {/* Banner de votação encerrada */}
       {isVoteClosed && (
         <div className="w-full bg-red-500 text-white py-4 px-6 text-center font-bold text-lg">
-          🔒 VOTAÇÃO ENCERRADA - Não é mais possível votar
+          VOTAÇÃO ENCERRADA - Não é mais possível votar
         </div>
       )}
 
@@ -243,7 +238,7 @@ export function PainelVotation() {
         <button 
           onClick={handleCloseVote}
           disabled={isVoteClosed || isClosing}
-          className={`w-[230px] h-16 px-12 py-5 border-2 rounded-lg font-semibold transition-colors ${
+          className={`w-[230px] h-16 px-11 border-2 rounded-lg font-semibold transition-colors ${
             isVoteClosed 
               ? 'border-gray-400 text-gray-400 cursor-not-allowed'
               : 'border-[#545759] text-[#545759] hover:bg-[#545759] hover:text-white cursor-pointer'
