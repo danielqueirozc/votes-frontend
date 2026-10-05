@@ -57,11 +57,11 @@ export function Sidebar() {
       </div>
 
       <button 
-        className="bg-[#282A2F] px-5 py-3 flex justify-center items-center gap-2 rounded-lg cursor-pointer"
+        className="bg-[#282A2F] px-5 py-3 flex justify-self-start items-center gap-2 rounded-lg cursor-pointer"
         onClick={HandleLogout}
         >
         <LogOut className="text-[#FAFAFA]"/>
-        <p className="text-[#FAFAFA] font-semibold text-[22px]">Logout</p>
+        <p className="text-[#FAFAFA] font-semibold text-lg">Logout</p>
       </button>
     </article>
   )
