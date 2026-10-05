@@ -22,7 +22,6 @@ export function DialogNewParticipant() {
         const { name, imageUrl } = data
 
         try {
-            console.log("dados enviados para CreateParticipant:", data)
             await CreateParticipant({ name, imageUrl })
         } catch( error ) {
             console.log('error creating new participant', error)
@@ -33,24 +32,23 @@ export function DialogNewParticipant() {
 
     return (
         <form
-         onSubmit={ handleSubmit(handleCreateNewParticipant) }
-         className="flex flex-col"
+            onSubmit={ handleSubmit(handleCreateNewParticipant) }
+            className="flex flex-col"
         >
             <header className="px-8 py-6 text-left font-semibold text-2xl">
                 Novo participante
             </header>
-
-            
+        
             <div className="flex flex-col px-8 py-6">
                 <FileUpload onFileUploaded={ url => {
                     console.log("URL pública recebida do backend:", url)
                     setValue("imageUrl", url)
                 }} />
 
-                <div className="flex flex-col py-6">
+                <div className="flex flex-col gap-2 py-6">
                     <label className="text-xl text-[#333333]">Nome</label>
                     <input 
-                        className="w-full max-w-[464px] h-[62px] rounded-lg placeholder:text-[#D8DAE5] placeholder:text-xl px-5 py-6 border border-[#D8DAE5]"
+                        className="w-full max-w-[464px] h-[2.5rem] rounded-lg placeholder:text-[#D8DAE5] placeholder:text-xl px-5 py-6 border border-[#D8DAE5]"
                         type="text"
                         placeholder="Digite o nome"
                         { ...register('name') }
@@ -59,13 +57,13 @@ export function DialogNewParticipant() {
             </div>
 
             <div className="flex justify-between items-center border-t border-[#D8DAE5] w-full px-8 py-6">
-                <button className="w-[167px] h-16 rounded-lg px-12 py-5 border border-[#545759] text-[#545759] font-medium cursor-pointer">
+                <button className="w-[167px] h-14 rounded-lg px-12 border border-[#545759] text-[#545759] font-medium cursor-pointer">
                     Cancelar
                 </button>
 
-                 <button type="submit" className="w-[167px] h-16 rounded-lg px-12 py-5 border bg-[#D818A5] text-[#FAFAFA] font-medium cursor-pointer">
+                 <button type="submit" className="w-[167px] h-14 rounded-lg px-12 border bg-[#D818A5] text-[#FAFAFA] font-medium cursor-pointer">
                     Confirmar
-                </button>
+                </button> 
             </div>
         </form>
     )
