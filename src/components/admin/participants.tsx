@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import { Sidebar } from "../sidebar";
 import { ParticipantItem } from "./participant-item";
 import {
@@ -98,15 +97,11 @@ export function Participants() {
                 </header>
                 
                 <div className="mt-10 flex justify-between">
-                    <div className="relative flex items-center">
-                        <input 
-                            className="bg-[#CCBFF8]/20 w-full max-w-[464px] h-[62px] rounded-lg placeholder:text-[#333333] px-5 py-6"
-                            type="text" 
-                            placeholder="Procure alguem..." 
-                        />
-                        <button type="button" className="absolute right-6 w-9 h-9 rounded-full flex items-center justify-center bg-[#7C5AED] text-[#FAFAFA] cursor-pointer">
-                            <Search className="w-4 h-4" />
-                        </button>
+                     <div className="flex flex-col gap-2">
+                        <h3 className="font-medium text-2xl text-[#212121]">Participantes cadastrados</h3>
+                        <span className="font-medium text-[#B5B5C3] uppercase">
+                            {participants.length} participantes | {selectedParticipants.length} selecionados
+                        </span>
                     </div>
 
                     <Dialog>
@@ -122,13 +117,6 @@ export function Participants() {
                 </div>
 
                 <div className="w-full p-5">
-                    <div className="flex flex-col gap-2">
-                        <h3 className="font-medium text-2xl text-[#212121]">Participantes cadastrados</h3>
-                        <span className="font-medium text-[#B5B5C3] uppercase">
-                            {participants.length} participantes | {selectedParticipants.length} selecionados
-                        </span>
-                    </div>
-
                     <section className="mt-10 flex flex-col flex-1">
                         <div className="flex justify-between items-center p-5 bg-[#F3F6F9] rounded-lg">
                             <h2 className="font-semibold uppercase text-[#464E5F]">Participante</h2>
