@@ -11,12 +11,14 @@ interface AuthContextType {
   Logout: () => void
   token: string | null
   isAuthenticated: boolean
+  isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [token, setToken] = useState<string | null>(() => {
     // verifica se estamos no browser antes de acessar localStorage
     if (typeof window !== 'undefined') {
@@ -38,13 +40,12 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         const currentTime = Date.now()
 
         if (expirationTime > currentTime) {
-          setUser({ 
-            id: payload.id || payload.sub, 
-            username: payload.username || payload.name || 'Usuário' 
+          setUser({
+            id: payload.id || payload.sub,
+            username: payload.username || payload.name || 'Usuário'
           })
-          
         } else {
-          // token expirado → limpa
+          // token expirado => limpa
           if (typeof window !== 'undefined') {
             localStorage.removeItem("token")
           }
@@ -61,6 +62,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     } else {
       setUser(null)
     }
+    setIsLoading(false)
   }, [token])
 
   function Login(newToken: string) {
@@ -81,7 +83,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   const isAuthenticated = !!token && !!user
 
   return (
-    <AuthContext.Provider value={{ Login, Logout, user, token, isAuthenticated }}>
+    <AuthContext.Provider value={{ Login, Logout, user, token, isAuthenticated, isLoading }}>
       {children}
     </AuthContext.Provider>
   )
