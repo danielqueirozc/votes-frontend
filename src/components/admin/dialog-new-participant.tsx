@@ -57,11 +57,11 @@ export function DialogNewParticipant() {
             </div>
 
             <div className="flex justify-between items-center border-t border-[#D8DAE5] w-full px-8 py-6">
-                <button className="w-[167px] h-14 rounded-lg px-12 border border-[#545759] text-[#545759] font-medium cursor-pointer">
+                <button className="w-41.75 h-14 rounded-lg px-12 border border-[#545759] text-[#545759] font-medium cursor-pointer">
                     Cancelar
                 </button>
 
-                 <button type="submit" className="w-[167px] h-14 rounded-lg px-12 border bg-[#D818A5] text-[#FAFAFA] font-medium cursor-pointer">
+                 <button type="submit" className="w-41.75 h-14 rounded-lg px-12 border bg-[#D818A5] text-[#FAFAFA] font-medium cursor-pointer">
                     Confirmar
                 </button> 
             </div>

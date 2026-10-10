@@ -16,10 +16,10 @@ export function AdminHome() {
 
            <div className="flex-1 relative h-screen overflow-auto">
                 <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="flex flex-col gap-10 w-[340px] text-center">
+                    <div className="flex flex-col gap-10 w-85 text-center">
                         <img 
                             src="/eye.png"
-                            className="w-[200px] h-[200px] mx-auto"
+                            className="w-50 h-50 mx-auto"
                             alt="olho ilustrativo" 
                         />
 
