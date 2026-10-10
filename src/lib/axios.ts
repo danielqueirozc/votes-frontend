@@ -25,25 +25,25 @@ api.interceptors.response.use(
 )
 
 export const ParticipantService = {
-    create: async ({ name, imageUrl }: ParticipantType) => await api.post('/create-participant', { name, imageUrl }),
-    list: async () => await api.get('/list-participants'),
-    delete: async (id: string) => await api.delete(`/delete-participant/${id}`)
+  create: async ({ name, imageUrl }: ParticipantType) => await api.post('/create-participant', { name, imageUrl }),
+  list: async () => await api.get('/list-participants'),
+  delete: async (id: string) => await api.delete(`/delete-participant/${id}`)
 }
 
 export const AuthService = {
-    register: async ({ name, email, password }: RegisterType) => {
-        const response = await api.post('/users', { name, email, password })
-        
-        return response.data
-      },
+  register: async ({ name, email, password }: RegisterType) => {
+      const response = await api.post('/users', { name, email, password })
       
-      login: async ({ email, password }: LoginType) => {
-        const response = await api.post('/sessions', { email, password })
-        
-        localStorage.setItem('token', response.data.token)
-        
       return response.data
-    }
+    },
+    
+  login: async ({ email, password }: LoginType) => {
+      const response = await api.post('/sessions', { email, password })
+      
+      localStorage.setItem('token', response.data.token)
+      
+    return response.data
+  }
 }
 
 export const VoteService = {

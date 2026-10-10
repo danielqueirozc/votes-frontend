@@ -33,7 +33,7 @@ export function App() {
           {/* rota principal redireciona para login */}
           <Route path="/" element={<Navigate to="/login" replace />} />
           
-          {/* rotas públicas -> redirecionam para admin se já logado */}
+          {/* rotas publicas -> redirecionam para admin se ja logado */}
           <Route path="/login" element={
             <PublicRoute>
               <Login />

@@ -35,6 +35,7 @@ export function PainelVotation() {
     }
 
     const savedLink = localStorage.getItem('currentVoteLink')
+    
     if (savedLink) {
       setCurrentVoteLink(savedLink)
     }
